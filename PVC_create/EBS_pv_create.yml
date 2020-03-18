@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-ebs
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Block
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: slow
+  mountOptions: 
+    - AWSElasticBlockStore
+  awsElasticBlockStore:
+      volumeID: vol-029909dcee767b5fb
