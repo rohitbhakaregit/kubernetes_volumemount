@@ -1,0 +1,30 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: web-app-dep
+spec:
+  selector:
+    matchLabels:
+      app: web-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+        - name: web-app
+          image: httpd:2.4
+          resources:
+            limits:
+                memory: "128Mi"
+                cpu: "500m"
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: aws-pvc
+              mountPath: /usr/local/apache2/htdocs
+      volumes: 
+        - name: aws-pvc
+          persistentVolumeClaim:
+             claimName: ebs-pvc-claim
