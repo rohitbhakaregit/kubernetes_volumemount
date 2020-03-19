@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    image: httpd:2.4
+    ports:
+        - 5000:80
+    volumes:
+        - ./vol1:/usr/local/apache2/htdocs
+  
